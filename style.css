@@ -1,4 +1,5 @@
- body,
+
+body,
  html {
    margin: 0;
    padding: 0;
@@ -7,9 +8,11 @@
    color: white;
    overflow: hidden;
  }
-  .music2{
-    display: none;
-  }
+
+ .music2 {
+   display: none;
+ }
+
  .left {
    overflow-y: auto;
    scrollbar-width: none;
@@ -27,6 +30,7 @@
  .right {
    height: 78vh;
    overflow-y: auto;
+   z-index: 1;
    scrollbar-width: none;
    width: 75vw;
    background-color: rgba(128, 128, 128, 0.163);
@@ -421,11 +425,50 @@
    width: 70vw;
  }
 
+ @property --angle {
+   syntax: "<angle>";
+   initial-value: 0deg;
+   inherits: false;
+ }
+
+ .playbar::after,
+ .playbar::before {
+   content: '';
+   position: absolute;
+   height: 100%;
+   width: 100%;
+   /* background-image: conic-gradient(red, blue, green, red); */
+   background-image: conic-gradient(from var(--angle), transparent 80%, rgb(56, 218, 15));
+   top: 50%;
+   left: 50%;
+   translate: -50% -50%;
+   z-index: -1;
+   padding: 5px;
+   border-radius: 8px;
+   animation: 3s spin linear infinite;
+
+ }
+
+ @keyframes spin {
+   from {
+     --angle: 0deg;
+   }
+
+   to {
+     --angle: 360deg;
+   }
+ }
+
+ .playbar::before {
+   filter: blur(1.5rem);
+ }
+
  .hamburgur {
    display: none;
  }
- .profile{
-  display: none;
+
+ .profile {
+   display: none;
  }
 
  .songinfo,
@@ -462,64 +505,76 @@
    .hamburgur img {
      height: 35px;
    }
-    .playbar{
-      width: 100%;
-    }
+
+   .playbar {
+     width: 100%;
+   }
  }
 
  @media (max-width:589px) {
-  .right{
-    width: 100%;
-    height: 85vh;
-  }
-  .playbar{
-      position: fixed;
-   width: 100%;
-   height: 20vh;
-   display: flex;
-   /* border-radius: 30px; */
-   justify-content: center;
-   margin-bottom: 10px;
-  }
-  .songinfo,
- .songtime {
-   width: 250px;
- }
-   .songbuttons{
-    position: relative;
-        left: -73px;
-        top: 12px;
+   .right {
+     width: 100%;
+     height: 85vh;
    }
-  .home ul li:nth-child(3) {
+
+   .playbar {
+     position: fixed;
+     width: 100%;
+     height: 20vh;
+     display: flex;
+     /* border-radius: 30px; */
+     justify-content: center;
+     margin-bottom: 10px;
+   }
+
+   .songinfo,
+   .songtime {
+     width: 250px;
+   }
+
+   .songbuttons {
+     position: relative;
+     left: -73px;
+     top: 12px;
+   }
+
+   .home ul li:nth-child(3) {
      padding-right: 10px;
-    border-radius: 100%;
+     border-radius: 100%;
    }
-   nav{
-    margin-bottom: -60px;
+
+   nav {
+     margin-bottom: -60px;
    }
-   .profile{
-    display: block;
-    width: 35px;
-    padding-left: 100px;
-    padding-top: 8px;
+
+   .profile {
+     display: block;
+     width: 35px;
+     padding-left: 100px;
+     padding-top: 8px;
    }
-   .abovebar{
-    display: flex;
-    flex-direction: column;
-    align-items:flex-end;
+
+   .abovebar {
+     display: flex;
+     flex-direction: column;
+     align-items: flex-end;
    }
-   .music2{
-    display: block;
-    margin-top: 70px;
-    /* padding-left: 50px; */
+
+   .music2 {
+     display: block;
+     margin-top: 70px;
+     /* padding-left: 50px; */
    }
-   .music2 img{
-    width: 85px;
+
+   .music2 img {
+     width: 85px;
    }
-   .img{
+
+   .img {
      flex-direction: column;
    }
-   .trending{
-    padding-left: 60px;
+
+   .trending {
+     padding-left: 60px;
    }
  }
