@@ -144,7 +144,7 @@ body,
 
  nav .about {
    position: relative;
-   left: 320px;
+   left: 180px;
    align-items: center;
  }
 
@@ -541,10 +541,6 @@ body,
    .home ul li:nth-child(3) {
      padding-right: 10px;
      border-radius: 100%;
-   }
-
-   nav {
-     margin-bottom: -60px;
    }
 
    .profile {
